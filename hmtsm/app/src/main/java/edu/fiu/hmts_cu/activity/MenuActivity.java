@@ -1,7 +1,9 @@
-package edu.fiu.hmts_cu;
+package edu.fiu.hmts_cu.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.fiu.hmts_cu.R;
 
 public class MenuActivity extends AppCompatActivity {
 

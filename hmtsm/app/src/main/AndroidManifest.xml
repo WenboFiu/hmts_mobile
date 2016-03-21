@@ -13,18 +13,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
-        <activity android:name=".SplashActivity" >
+        <activity android:name=".activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:permission="android.permission.INTERNET">
         </activity>
-        <activity android:name=".MenuActivity" >
+        <activity android:name=".activity.MenuActivity" >
         </activity>
     </application>
 

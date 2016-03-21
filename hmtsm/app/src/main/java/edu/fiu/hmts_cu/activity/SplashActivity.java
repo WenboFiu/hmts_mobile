@@ -1,10 +1,11 @@
-package edu.fiu.hmts_cu;
+package edu.fiu.hmts_cu.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 import android.os.Handler;
+
+import edu.fiu.hmts_cu.R;
 
 public class SplashActivity extends AppCompatActivity {
 

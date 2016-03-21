@@ -1,6 +1,5 @@
-package edu.fiu.hmts_cu;
+package edu.fiu.hmts_cu.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.ExecutionException;
+import edu.fiu.hmts_cu.R;
+import edu.fiu.hmts_cu.model.HttpService;
 
-import edu.fiu.hmts_cu.service.HttpService;
-
+/**
+ * Class for LoginActivity
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private ProgressBar load;
@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject input = new JSONObject();
         EditText usernm = (EditText)LoginActivity.this.findViewById(R.id.usernm);
         EditText passwd = (EditText)LoginActivity.this.findViewById(R.id.passwd);
+        input.put("login", "/userservice/login");
         input.put("username", usernm.getText());
         input.put("password", passwd.getText());
         String res = new service().execute(input).get();

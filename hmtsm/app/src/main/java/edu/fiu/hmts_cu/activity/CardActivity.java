@@ -6,27 +6,20 @@ import android.os.Bundle;
 import edu.fiu.hmts_cu.R;
 
 /**
- * Class for MenuActivity
+ * Class for CardActivity
  */
-public class MenuActivity extends AppCompatActivity {
+public class CardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_card);
     }
 
     /**
-     * Add a product into shopping cart.
+     * Create an order with card.
      */
-    public void AddProductCart(){
-
-    }
-
-    /**
-     * Logout.
-     */
-    public void Logout(){
+    public void NewOrderbyCard(){
 
     }
 

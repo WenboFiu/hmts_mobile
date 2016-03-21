@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.fiu.hmts_cu.R;
@@ -20,6 +21,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressBar load;
 
+    /**
+     * Initialize activity.
+     * @param savedInstanceState Instance status
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         load = (ProgressBar)LoginActivity.this.findViewById(R.id.load);
     }
 
-
+    /**
+     * Class for async task.
+     */
     class service extends AsyncTask<JSONObject, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -45,7 +52,20 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Login event.
+     * @param view current view
+     * @throws Exception
+     */
     public void openMenuActivity(View view) throws Exception {
+        Login();
+    }
+
+    /**
+     * Login.
+     * @throws Exception
+     */
+    public void Login() throws Exception {
         JSONObject input = new JSONObject();
         EditText usernm = (EditText)LoginActivity.this.findViewById(R.id.usernm);
         EditText passwd = (EditText)LoginActivity.this.findViewById(R.id.passwd);
@@ -61,5 +81,12 @@ public class LoginActivity extends AppCompatActivity {
             menuIntent.putExtra("Phone", resJson.getString("phone"));
             startActivity(menuIntent);
         }
+    }
+
+    /**
+     * Open registration activity.
+     */
+    public void NewUser() {
+
     }
 }

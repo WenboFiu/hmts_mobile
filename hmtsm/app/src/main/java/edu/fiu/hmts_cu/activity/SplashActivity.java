@@ -7,6 +7,9 @@ import android.os.Handler;
 
 import edu.fiu.hmts_cu.R;
 
+/**
+ * Class for SplashActivity
+ */
 public class SplashActivity extends AppCompatActivity {
 
     private final int SPLASH_DURATION = 1800;
@@ -14,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_splash);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

@@ -6,27 +6,20 @@ import android.os.Bundle;
 import edu.fiu.hmts_cu.R;
 
 /**
- * Class for MenuActivity
+ * Class for FillOrderInfoActivity
  */
-public class MenuActivity extends AppCompatActivity {
+public class FillOrderInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_fill_order_info);
     }
 
     /**
-     * Add a product into shopping cart.
+     * Create an order.
      */
-    public void AddProductCart(){
-
-    }
-
-    /**
-     * Logout.
-     */
-    public void Logout(){
+    public void NewOrder(){
 
     }
 

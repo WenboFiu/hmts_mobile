@@ -17,7 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/drawable/bg'] } }
+    sourceSets {
+        main { res.srcDirs = ['src/main/res', 'src/main/res/drawable/bg', 'src/main/res/Javadoc'] }
+    }
 }
 
 dependencies {

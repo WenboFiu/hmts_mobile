@@ -6,27 +6,27 @@ import android.os.Bundle;
 import edu.fiu.hmts_cu.R;
 
 /**
- * Class for MenuActivity
+ * Class for PaymentActivity
  */
-public class MenuActivity extends AppCompatActivity {
+public class PaymentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_payment);
     }
 
     /**
-     * Add a product into shopping cart.
+     * Open order info activity for cash.
      */
-    public void AddProductCart(){
+    public void ByCash(){
 
     }
 
     /**
-     * Logout.
+     * Open order info activity for card.
      */
-    public void Logout(){
+    public void ByCard(){
 
     }
 

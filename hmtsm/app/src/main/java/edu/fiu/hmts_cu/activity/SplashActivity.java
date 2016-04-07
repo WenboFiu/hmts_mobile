@@ -12,7 +12,7 @@ import edu.fiu.hmts_cu.R;
  */
 public class SplashActivity extends AppCompatActivity {
 
-    private final int SPLASH_DURATION = 1800;
+    private final int SPLASH_DURATION = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

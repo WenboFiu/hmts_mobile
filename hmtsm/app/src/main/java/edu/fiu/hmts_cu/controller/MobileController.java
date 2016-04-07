@@ -1,6 +1,9 @@
 package edu.fiu.hmts_cu.controller;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import edu.fiu.hmts_cu.model.HttpService;
 
 /**
  * Class for mobile controller
@@ -13,9 +16,16 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject login(JSONObject data){
-
-        return null;
+    public static JSONObject login(JSONObject data){
+        try {
+            data.put("target", "/login");
+            String res = HttpService.requestService(data);
+            JSONObject loginRes = new JSONObject(res).getJSONObject("data");
+            return loginRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
     /**
@@ -23,9 +33,16 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject logout(JSONObject data){
-
-        return null;
+    public static JSONObject logout(JSONObject data){
+        try {
+            data.put("target", "/logout");
+            String res = HttpService.requestService(data);
+            JSONObject logoutRes = new JSONObject(res);
+            return logoutRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
     /**
@@ -33,18 +50,33 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject register(JSONObject data){
-
-        return null;
+    public static JSONObject register(JSONObject data){
+        try {
+            data.put("target", "/register");
+            String res = HttpService.requestService(data);
+            JSONObject regRes = new JSONObject(res);
+            return regRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
     /**
      * Display the menu.
      * @return Results
      */
-    public JSONObject displayMenu(){
-
-        return null;
+    public static JSONArray displayMenu(){
+        try {
+            JSONObject data = new JSONObject();
+            data.put("target", "/displaymenu");
+            String res = HttpService.requestService(data);
+            JSONArray menuRes = new JSONObject(res).getJSONArray("data");
+            return menuRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONArray();
+        }
     }
 
     /**
@@ -52,9 +84,16 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject displayCart(JSONObject data){
-
-        return null;
+    public static JSONArray displayCart(JSONObject data){
+        try {
+            data.put("target", "/displaycart");
+            String res = HttpService.requestService(data);
+            JSONArray cartRes = new JSONObject(res).getJSONArray("data");
+            return cartRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONArray();
+        }
     }
 
     /**
@@ -62,9 +101,16 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject addProductCart(JSONObject data){
-
-        return null;
+    public static JSONObject addProductCart(JSONObject data){
+        try {
+            data.put("target", "/selectproduct");
+            String res = HttpService.requestService(data);
+            JSONObject cartRes = new JSONObject(res);
+            return cartRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
     /**
@@ -72,9 +118,16 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject delProductCart(JSONObject data){
-
-        return null;
+    public static JSONObject delProductCart(JSONObject data){
+        try {
+            data.put("target", "/selectproduct");
+            String res = HttpService.requestService(data);
+            JSONObject cartRes = new JSONObject(res);
+            return cartRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
     /**
@@ -82,9 +135,32 @@ public class MobileController {
      * @param data required info
      * @return Results
      */
-    public JSONObject newOrder(JSONObject data){
-
-        return null;
+    public static JSONObject newOrder(JSONObject data){
+        try {
+            data.put("target", "/placeorder");
+            String res = HttpService.requestService(data);
+            JSONObject orderRes = new JSONObject(res);
+            return orderRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
     }
 
+    /**
+     * Get secure questions.
+     * @return Results
+     */
+    public static JSONArray getQuestions(){
+        try {
+            JSONObject data = new JSONObject();
+            data.put("target", "/getquestions");
+            String res = HttpService.requestService(data);
+            JSONArray quesRes = new JSONObject(res).getJSONArray("data");
+            return quesRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONArray();
+        }
+    }
 }

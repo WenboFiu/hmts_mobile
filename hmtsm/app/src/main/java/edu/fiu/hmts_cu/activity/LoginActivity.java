@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.fiu.hmts_cu.R;
-import edu.fiu.hmts_cu.model.HttpService;
+import edu.fiu.hmts_cu.controller.MobileController;
 
 /**
  * Class for LoginActivity
@@ -36,15 +35,15 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Class for async task.
      */
-    class service extends AsyncTask<JSONObject, Void, String> {
+    class service extends AsyncTask<JSONObject, Void, JSONObject> {
         @Override
         protected void onPreExecute() {
-            load.setIndeterminate(true);
-            load.setVisibility(View.VISIBLE);
+            //load.setIndeterminate(true);
+            //load.setVisibility(View.VISIBLE);
         }
 
-        protected String doInBackground(JSONObject... params) {
-            return HttpService.requestService(params[0]);
+        protected JSONObject doInBackground(JSONObject... params) {
+            return MobileController.login(params[0]);
         }
 
         protected void onPostExecute(Void result) {
@@ -57,36 +56,27 @@ public class LoginActivity extends AppCompatActivity {
      * @param view current view
      * @throws Exception
      */
-    public void openMenuActivity(View view) throws Exception {
-        Login();
-    }
-
-    /**
-     * Login.
-     * @throws Exception
-     */
-    public void Login() throws Exception {
+    public void Login(View view) throws Exception {
         JSONObject input = new JSONObject();
         EditText usernm = (EditText)LoginActivity.this.findViewById(R.id.usernm);
         EditText passwd = (EditText)LoginActivity.this.findViewById(R.id.passwd);
-        input.put("login", "/userservice/login");
         input.put("username", usernm.getText());
         input.put("password", passwd.getText());
-        String res = new service().execute(input).get();
+        JSONObject loginRes = new service().execute(input).get();
 
-        if (!"Not Found".equals(res)) {
-            JSONObject resJson = new JSONObject(res);
+        if (loginRes.length() > 0) {
             Intent menuIntent = new Intent(this, MenuActivity.class);
-            menuIntent.putExtra("UserId", resJson.getString("userId"));
-            menuIntent.putExtra("Phone", resJson.getString("phone"));
+            menuIntent.putExtra("UserId", loginRes.getString("userId"));
+            menuIntent.putExtra("Phone", loginRes.getString("phone"));
             startActivity(menuIntent);
         }
     }
 
     /**
-     * Open registration activity.
+     * Open registration activity event.
      */
-    public void NewUser() {
-
+    public void SignUp(View view) throws Exception{
+        Intent regIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        LoginActivity.this.startActivity(regIntent);
     }
 }

@@ -19,8 +19,8 @@ import java.util.Scanner;
  */
 public class HttpService {
 
-    //private static String SERVICE_URL = "http://192.168.1.138:8080/hmts/mobile";
-    private static String SERVICE_URL = "http://10.109.72.83:8080/hmts/mobile";
+    //private static String SERVICE_URL = "http://192.168.1.125:8080/hmts/mobile/service";
+    private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
     private static int CONNECTION_TIMEOUT = 20000;
     private static int DATARETRIEVAL_TIMEOUT = 20000;
 
@@ -33,18 +33,25 @@ public class HttpService {
         HttpURLConnection urlConn = null;
         String res = "";
         try {
-            URL url = new URL(SERVICE_URL + data.get("login").toString());
+            URL url = new URL(SERVICE_URL + data.get("target").toString());
             urlConn = (HttpURLConnection) url.openConnection();
-            urlConn.setDoOutput(true);
             urlConn.setConnectTimeout(CONNECTION_TIMEOUT);
             urlConn.setReadTimeout(DATARETRIEVAL_TIMEOUT);
-            urlConn.setRequestMethod("POST");
             urlConn.setRequestProperty("Content-Type", "application/json");
 
-            String send = data.toString();
-            OutputStream outputStream = urlConn.getOutputStream();
-            outputStream.write(send.getBytes());
-            outputStream.flush();
+            data.remove("target");
+            if (data.length() > 0){
+                urlConn.setDoOutput(true);
+                urlConn.setRequestMethod("POST");
+                String send = data.toString();
+                OutputStream outputStream = urlConn.getOutputStream();
+                outputStream.write(send.getBytes());
+                outputStream.flush();
+            }
+            else{
+                urlConn.setDoOutput(false);
+                urlConn.setRequestMethod("GET");
+            }
 
             int statusCode = urlConn.getResponseCode();
             if (statusCode == 200){
@@ -52,22 +59,16 @@ public class HttpService {
                 res = getResponseText(in);
             }
             else {
-                res = "Not Found";
+                res = "{\"result\": \"failed\"}";
             }
-
         }catch (MalformedURLException e) {
-            // URL is invalid
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } catch (SocketTimeoutException e) {
-            // data retrieval or connection timed out
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } catch (IOException e) {
-            // could not read response body
-            // (could not create input stream)
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
-            // response body is no valid JSON string
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if (urlConn != null)
                 urlConn.disconnect();

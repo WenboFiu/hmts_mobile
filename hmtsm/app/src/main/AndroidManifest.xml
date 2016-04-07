@@ -12,30 +12,34 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar" >
-        <activity android:name=".activity.SplashActivity" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:permission="android.permission.INTERNET" >
+            android:permission="android.permission.INTERNET">
         </activity>
-        <activity android:name=".activity.MenuActivity" >
+        <activity android:name=".activity.MenuActivity"
+            android:theme="@style/Theme.Custom.ActionBar">
         </activity>
-        <activity android:name=".activity.RegisterActivity" >
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/Theme.Custom.ActionBar">
         </activity>
-        <activity android:name=".activity.CartActivity" >
+        <activity android:name=".activity.CartActivity"
+            android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
-        <activity android:name=".activity.PaymentActivity" >
+        <activity android:name=".activity.PaymentActivity"
+            android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
-        <activity android:name=".activity.CardActivity" >
+        <activity android:name=".activity.CardActivity"
+            android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
-        <activity android:name=".activity.FillOrderInfoActivity" >
+        <activity android:name=".activity.FillOrderInfoActivity"
+            android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
     </application>
 

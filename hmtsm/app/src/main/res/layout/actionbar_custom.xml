@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_gravity="fill_horizontal"
+    android:orientation="horizontal"
+    android:layout_height="fill_parent"
+    android:background="@color/colorBackground">
+    <Button  android:id="@+id/header_left_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:textSize="20sp"
+        android:textColor="@color/colorBackground"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:layout_centerVertical="true" />
+
+    <TextView android:id="@+id/header_text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@+id/header_left_btn"
+        android:layout_toLeftOf="@+id/header_right_btn"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorButton"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:singleLine="true" />
+
+    <Button  android:id="@+id/header_right_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorButton"
+        android:textSize="20sp"
+        android:textColor="@color/colorBackground"
+        android:gravity="center"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

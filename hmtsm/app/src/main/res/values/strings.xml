@@ -1,28 +1,35 @@
 <resources>
 
-    <string name="user_service">/userservice</string>
-    <string name="login">login</string>
-    <string name="logout">logout</string>
-    <string name="register">register</string>
-
-    <string name="operation_service">/operaservice</string>
-    <string name="customer_service">/custservice</string>
-
-
     <string name="app_name">Happy Meal</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_new_user">New User</string>
-    <string name="login_title">Welcome to Login</string>
+    <string name="action_sign_in">Log In</string>
+    <string name="action_new_user">Sign up</string>
+    <string name="login_title">Happy Meal</string>
     <string name="error_invalid_email">This username is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="menu_title">MENU</string>
-    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="ttile_menu">MENU</string>
+
+    <string name="title_register">REGISTRATION</string>
+    <string name="prompt_firstname">First Name</string>
+    <string name="prompt_lastname">Last Name</string>
+    <string name="prompt_phone">Phone</string>
+    <string name="prompt_answer">Answer</string>
+    <string name="prompt_question">Choose a question</string>
+    <string name="button_signup">Create account</string>
+
+    <string-array name="quantity">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
 </resources>

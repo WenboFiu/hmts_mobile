@@ -22,4 +22,7 @@
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="WindowTitleBackground" >
+        <item name="android:background">@color/colorBackground</item>
+    </style>
 </resources>

@@ -3,7 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorBackground">#ff6200</color>
-    <color name="colorButton">#f3f3f3</color>
+    <color name="colorOrange">#ff6200</color>
+    <color name="colorLightGray">#f3f3f3</color>
+    <color name="colorProdDivider">#cccccc</color>
     <color name="black_overlay">#66000000</color>
 </resources>

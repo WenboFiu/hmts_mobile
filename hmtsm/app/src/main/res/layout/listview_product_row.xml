@@ -45,7 +45,7 @@
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:dropDownWidth="80dp"
+            android:dropDownWidth="100dp"
             android:spinnerMode="dropdown">
             <requestFocus />
         </Spinner>

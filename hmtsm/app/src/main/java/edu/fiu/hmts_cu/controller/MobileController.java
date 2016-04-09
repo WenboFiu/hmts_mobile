@@ -151,16 +151,16 @@ public class MobileController {
      * Get secure questions.
      * @return Results
      */
-    public static JSONArray getQuestions(){
+    public static JSONObject getQuestions(){
         try {
             JSONObject data = new JSONObject();
             data.put("target", "/getquestions");
             String res = HttpService.requestService(data);
-            JSONArray quesRes = new JSONObject(res).getJSONArray("data");
+            JSONObject quesRes = new JSONObject(res);
             return quesRes;
         } catch (Exception e) {
             e.printStackTrace();
-            return new JSONArray();
+            return new JSONObject();
         }
     }
 }

@@ -19,8 +19,8 @@ import java.util.Scanner;
  */
 public class HttpService {
 
-    //private static String SERVICE_URL = "http://192.168.1.125:8080/hmts/mobile/service";
-    private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
+    private static String SERVICE_URL = "http://192.168.1.125:8080/hmts/mobile/service";
+    //private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
     private static int CONNECTION_TIMEOUT = 20000;
     private static int DATARETRIEVAL_TIMEOUT = 20000;
 
@@ -59,7 +59,7 @@ public class HttpService {
                 res = getResponseText(in);
             }
             else {
-                res = "{\"result\": \"failed\"}";
+                res = "{\"result\":\"failed\"}";
             }
         }catch (MalformedURLException e) {
             e.printStackTrace();
@@ -69,11 +69,10 @@ public class HttpService {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (urlConn != null)
-                urlConn.disconnect();
-            return  res;
         }
+        if (urlConn != null)
+            urlConn.disconnect();
+        return  res;
     }
 
     /**

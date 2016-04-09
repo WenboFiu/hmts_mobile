@@ -27,8 +27,17 @@ import edu.fiu.hmts_cu.customcontrol.ProductListAdapter;
  */
 public class MenuActivity extends Activity {
 
+    /**
+     * The User id.
+     */
     String userId = "";
+    /**
+     * The Phone.
+     */
     String phone = "";
+    /**
+     * The Products.
+     */
     JSONArray products = null;
 
     @Override
@@ -38,6 +47,27 @@ public class MenuActivity extends Activity {
         setContentView(R.layout.activity_menu);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.actionbar_custom);
 
+        configActionBar();
+
+        initialization();
+    }
+
+    /**
+     * Initialization.
+     */
+    private void initialization() {
+        products = getProducts();
+        ListView productList = (ListView)findViewById(R.id.productList);
+        productList.setAdapter(new ProductListAdapter(this, products));
+
+        userId = getIntent().getStringExtra("userId");
+        phone = getIntent().getStringExtra("phone");
+    }
+
+    /**
+     * Config action bar.
+     */
+    private void configActionBar() {
         TextView header = (TextView) findViewById(R.id.header_text);
         header.setText(R.string.ttile_menu);
 
@@ -58,15 +88,13 @@ public class MenuActivity extends Activity {
                 viewCart(v);
             }
         });
-
-        products = getProducts();
-        ListView productList = (ListView)findViewById(R.id.productList);
-        productList.setAdapter(new ProductListAdapter(this, products));
-
-        userId = getIntent().getStringExtra("userId");
-        phone = getIntent().getStringExtra("phone");
     }
 
+    /**
+     * Gets products.
+     *
+     * @return the products
+     */
     private JSONArray getProducts() {
         JSONArray products = null;
         try {
@@ -93,6 +121,9 @@ public class MenuActivity extends Activity {
             return MobileController.displayMenu();
         }
 
+        /**
+         * On post execute.
+         */
         protected void onPostExecute() {
 
         }
@@ -100,13 +131,17 @@ public class MenuActivity extends Activity {
 
     /**
      * Logout.
+     *
+     * @param view the view
      */
     public void logout(View view){
         MenuActivity.this.finish();
     }
 
     /**
-     * Go to shopping cart.
+     * View cart.
+     *
+     * @param view the view
      */
     public void viewCart(View view){
         JSONArray cartList = getProductinCart();
@@ -130,12 +165,14 @@ public class MenuActivity extends Activity {
         Intent cartIntent = new Intent(MenuActivity.this, CartActivity.class);
         cartIntent.putExtra("userId", userId);
         cartIntent.putExtra("phone", phone);
-        cartIntent.putExtra("cartList", cartList.toString());
+        cartIntent.putExtra("cartArray", cartList.toString());
         startActivity(cartIntent);
     }
 
     /**
      * Get products in shopping cart.
+     *
+     * @return the json array
      */
     public JSONArray getProductinCart(){
         JSONArray cartList = new JSONArray();

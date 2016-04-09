@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPostalAddress"
         android:ems="10"
-        android:id="@+id/address"
+        android:id="@+id/shipaddr"
         android:layout_marginTop="10dp"
         android:phoneNumber="true"
         android:hint="@string/prompt_ship"
@@ -31,7 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/city" />
+        android:layout_below="@+id/shipcity" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -61,7 +61,8 @@
             android:text="Pay by Cash"
             android:id="@+id/cash"
             android:textSize="18dp"
-            android:textColor="#626262"/>
+            android:textColor="#626262"
+            android:onClick="selectCash"/>
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
             android:text="Pay by Debit/Credit Card"
             android:id="@+id/card"
             android:textSize="18dp"
-            android:textColor="#626262" />
+            android:textColor="#626262"
+            android:onClick="selectCard"/>
     </RadioGroup>
 
     <Button
@@ -80,37 +82,24 @@
         android:layout_below="@+id/radioGroup"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:background="@color/colorOrange"
         android:textColor="@color/colorLightGray"
         android:textSize="20dp"
-        android:height="35dp" />
+        android:height="35dp"
+        android:onClick="placeOrderCash"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPostalAddress"
         android:ems="10"
-        android:id="@+id/city"
+        android:id="@+id/shipcity"
         android:phoneNumber="true"
         android:hint="@string/prompt_city"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/address" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/shoppingcart"
-        android:id="@+id/shoppingcart"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/placeorder"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/colorOrange"
-        android:textColor="@color/colorLightGray"
-        android:textSize="20dp"
-        android:height="35dp" />
+        android:layout_below="@+id/shipaddr" />
 
 </RelativeLayout>

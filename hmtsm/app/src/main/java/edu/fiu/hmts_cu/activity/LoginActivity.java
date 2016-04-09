@@ -18,6 +18,9 @@ import edu.fiu.hmts_cu.controller.MobileController;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * The Load.
+     */
     private ProgressBar load;
 
     /**
@@ -46,6 +49,11 @@ public class LoginActivity extends AppCompatActivity {
             return MobileController.login(params[0]);
         }
 
+        /**
+         * On post execute.
+         *
+         * @param result the result
+         */
         protected void onPostExecute(Void result) {
             load.setVisibility(View.GONE);
         }
@@ -53,8 +61,9 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Login event.
+     *
      * @param view current view
-     * @throws Exception
+     * @throws Exception the exception
      */
     public void Login(View view) throws Exception {
         JSONObject input = new JSONObject();
@@ -66,14 +75,17 @@ public class LoginActivity extends AppCompatActivity {
 
         if (loginRes.length() > 0) {
             Intent menuIntent = new Intent(this, MenuActivity.class);
-            menuIntent.putExtra("UserId", loginRes.getString("userId"));
-            menuIntent.putExtra("Phone", loginRes.getString("phone"));
+            menuIntent.putExtra("userId", loginRes.getString("userId"));
+            menuIntent.putExtra("phone", loginRes.getString("phone"));
             startActivity(menuIntent);
         }
     }
 
     /**
      * Open registration activity event.
+     *
+     * @param view the view
+     * @throws Exception the exception
      */
     public void SignUp(View view) throws Exception{
         Intent regIntent = new Intent(LoginActivity.this, RegisterActivity.class);

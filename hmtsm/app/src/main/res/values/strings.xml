@@ -25,7 +25,7 @@
     <string name="button_signup">Create account</string>
 
     <string name="prompt_ship">Shipping Address</string>
-    <string name="prompt_city">City/State Zipcode</string>
+    <string name="prompt_city">"City, State   Zip Code"</string>
     <string name="prompt_phonenumber">Phone Number</string>
     <string name="prompt_deliverynote">Delivery Notes (Optional)</string>
     <string name="placeorder">Place Order</string>

@@ -30,7 +30,13 @@ import edu.fiu.hmts_cu.controller.MobileController;
  */
 public class RegisterActivity extends Activity {
 
+    /**
+     * The Quesitems.
+     */
     List<String> quesitems;
+    /**
+     * The Ques iditems.
+     */
     List<String> quesIditems;
 
     @Override
@@ -40,6 +46,26 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.activity_register);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.actionbar_custom);
 
+        configActionBar();
+
+        initialization();
+    }
+
+    /**
+     * Initialization.
+     */
+    private void initialization() {
+        Spinner question = (Spinner)findViewById(R.id.question);
+        getQuestionItems();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,quesitems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        question.setAdapter(adapter);
+    }
+
+    /**
+     * Config action bar.
+     */
+    private void configActionBar() {
         TextView header = (TextView)findViewById(R.id.header_text);
         header.setText(R.string.title_register);
 
@@ -55,14 +81,11 @@ public class RegisterActivity extends Activity {
         Button right = (Button)findViewById(R.id.header_left_btn);
         right.setWidth(25);
         right.setVisibility(View.INVISIBLE);
-
-        Spinner question = (Spinner)findViewById(R.id.question);
-        getQuestionItems();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,quesitems);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        question.setAdapter(adapter);
     }
 
+    /**
+     * Gets question items.
+     */
     private void getQuestionItems() {
         quesIditems = new ArrayList<>();
         quesitems = new ArrayList<>();
@@ -103,6 +126,9 @@ public class RegisterActivity extends Activity {
             return new JSONObject();
         }
 
+        /**
+         * On post execute.
+         */
         protected void onPostExecute() {
 
         }
@@ -110,6 +136,9 @@ public class RegisterActivity extends Activity {
 
     /**
      * Create a user.
+     *
+     * @param view the view
+     * @throws Exception the exception
      */
     public void register(View view) throws Exception{
         if (checkFields()) return;
@@ -129,13 +158,18 @@ public class RegisterActivity extends Activity {
         if ("successful".equals(regRes.get("result").toString())
                 && !"-1".equals(regRes.getJSONObject("data").get("userId").toString())) {
             Intent menuIntent = new Intent(this, MenuActivity.class);
-            menuIntent.putExtra("UserId", regRes.getJSONObject("data").getString("userId"));
-            menuIntent.putExtra("Phone", regRes.getJSONObject("data").getString("phone"));
+            menuIntent.putExtra("userId", regRes.getJSONObject("data").getString("userId"));
+            menuIntent.putExtra("phone", regRes.getJSONObject("data").getString("phone"));
             startActivity(menuIntent);
             this.finish();
         }
     }
 
+    /**
+     * Check fields boolean.
+     *
+     * @return the boolean
+     */
     private boolean checkFields() {
         if ("".equals(((EditText)findViewById(R.id.email)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.passwd)).getText().toString())

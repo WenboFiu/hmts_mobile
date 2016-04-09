@@ -22,8 +22,37 @@ import edu.fiu.hmts_cu.customcontrol.CartListAdapter;
  */
 public class CartActivity extends Activity {
 
+    /**
+     * The User id.
+     */
     String userId = "";
+    /**
+     * The Phone.
+     */
     String phone = "";
+    /**
+     * The Source.
+     */
+    String source = "";
+    /**
+     * The Ship addr.
+     */
+    String shipAddr = "";
+    /**
+     * The Ship city.
+     */
+    String shipCity = "";
+    /**
+     * The Notes.
+     */
+    String notes = "";
+    /**
+     * The Payment.
+     */
+    String payment = "";
+    /**
+     * The Cart array.
+     */
     JSONArray cartArray = null;
 
     @Override
@@ -33,9 +62,37 @@ public class CartActivity extends Activity {
         setContentView(R.layout.activity_cart);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.actionbar_custom);
 
-        userId = getIntent().getExtras().getString("userId");
-        phone = getIntent().getExtras().getString("phone");
+        receiveDataFromLastActivity();
 
+        configActionBar();
+
+        getTotalAmount();
+    }
+
+    /**
+     * Receive data from last activity.
+     */
+    private void receiveDataFromLastActivity() {
+        userId = getIntent().getStringExtra("userId");
+        phone = getIntent().getStringExtra("phone");
+        source = getIntent().getStringExtra("source");
+
+        try {
+            String object = getIntent().getStringExtra("cartArray");
+            if (object == null || "".equals(object))
+                object = "[]";
+            cartArray = new JSONArray(object);
+            ListView cartList = (ListView) findViewById(R.id.cartList);
+            cartList.setAdapter(new CartListAdapter(this, cartArray));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Config action bar.
+     */
+    private void configActionBar() {
         TextView header = (TextView) findViewById(R.id.header_text);
         header.setText("Shopping Cart");
 
@@ -56,46 +113,46 @@ public class CartActivity extends Activity {
                 viewOrderInfo(v);
             }
         });
-
-        try {
-            Object object = getIntent().getExtras().get("cartList");
-            if (object != null){
-                cartArray = new JSONArray(object.toString());
-                ListView cartList = (ListView)findViewById(R.id.cartList);
-                cartList.setAdapter(new CartListAdapter(this, cartArray));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        getTotal();
+        if ("cardactivity".equals(source))
+            right.setVisibility(View.INVISIBLE);
     }
 
     /**
      * Display menu.
+     *
+     * @param v the v
      */
-    private void viewMenu(View v) {
+    public void viewMenu(View v) {
         this.finish();
     }
 
     /**
      * Display a view to enter order info.
+     *
+     * @param v the v
      */
-    private void viewOrderInfo(View v) {
+    public void viewOrderInfo(View v) {
         Intent orderIntent = new Intent(CartActivity.this, OrderInfoActivity.class);
         orderIntent.putExtra("userId", userId);
         orderIntent.putExtra("phone", phone);
-        orderIntent.putExtra("cartList", orderIntent.toString());
-        startActivity(orderIntent);
+        orderIntent.putExtra("shipaddr", shipAddr);
+        orderIntent.putExtra("shipcity", shipCity);
+        orderIntent.putExtra("notes", notes);
+        orderIntent.putExtra("payment", payment);
+        orderIntent.putExtra("cartList", cartArray.toString());
+        startActivityForResult(orderIntent, 1);
     }
 
-    private void getTotal(){
+    /**
+     * Get total amount.
+     */
+    private void getTotalAmount(){
         ListView cartList = (ListView)findViewById(R.id.cartList);
         TextView total = (TextView)findViewById(R.id.total);
         double amount = 0;
-        for (int i = 0; i < cartArray.length(); i++){
+        for (int i = 0; i < cartArray.length(); i++) {
             View view = cartList.getAdapter().getView(i, null, cartList);
-            String subTotalTmp = ((TextView)view.findViewById(R.id.carttotal)).getText().toString();
+            String subTotalTmp = ((TextView) view.findViewById(R.id.carttotal)).getText().toString();
             double subTotal = Double.parseDouble(subTotalTmp);
             try {
                 cartArray.getJSONObject(i).put("total", subTotal);
@@ -104,6 +161,20 @@ public class CartActivity extends Activity {
             }
             amount += subTotal;
         }
-        total.setText("TOTAL: $" + String.valueOf(amount) + " USD");
+        total.setText("TOTAL: $" + String.format("%.2f", amount) + " USD");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                shipAddr = data.getStringExtra("shipaddr");
+                shipCity = data.getStringExtra("shipcity");
+                notes = data.getStringExtra("notes");
+                phone = data.getStringExtra("phone");
+                payment = data.getStringExtra("payment");
+            }
+        }
     }
 }

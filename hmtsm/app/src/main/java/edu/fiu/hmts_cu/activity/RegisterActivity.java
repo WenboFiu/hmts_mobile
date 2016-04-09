@@ -52,6 +52,10 @@ public class RegisterActivity extends Activity {
             }
         });
 
+        Button right = (Button)findViewById(R.id.header_left_btn);
+        right.setWidth(25);
+        right.setVisibility(View.INVISIBLE);
+
         Spinner question = (Spinner)findViewById(R.id.question);
         getQuestionItems();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,quesitems);

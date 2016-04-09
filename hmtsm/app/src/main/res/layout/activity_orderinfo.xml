@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edu.fiu.hmts_cu.activity.OrderInfoActivity"
+    android:background="@color/colorLightGray">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/address"
+        android:layout_marginTop="10dp"
+        android:phoneNumber="true"
+        android:hint="@string/prompt_ship"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/phonenum"
+        android:hint="@string/prompt_phonenumber"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/city" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deliverynote"
+        android:hint="@string/prompt_deliverynote"
+        android:maxLines="2"
+        android:minLines="2"
+        android:layout_below="@+id/phonenum"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deliverynote"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="6dp"
+        android:id="@+id/radioGroup"
+        android:checkedButton="@+id/cash">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay by Cash"
+            android:id="@+id/cash"
+            android:textSize="18dp"
+            android:textColor="#626262"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay by Debit/Credit Card"
+            android:id="@+id/card"
+            android:textSize="18dp"
+            android:textColor="#626262" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/placeorder"
+        android:id="@+id/placeorder"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorOrange"
+        android:textColor="@color/colorLightGray"
+        android:textSize="20dp"
+        android:height="35dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/city"
+        android:phoneNumber="true"
+        android:hint="@string/prompt_city"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/address" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shoppingcart"
+        android:id="@+id/shoppingcart"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/placeorder"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorOrange"
+        android:textColor="@color/colorLightGray"
+        android:textSize="20dp"
+        android:height="35dp" />
+
+</RelativeLayout>

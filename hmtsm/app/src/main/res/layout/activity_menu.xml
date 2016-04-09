@@ -13,5 +13,9 @@
         android:layout_height="match_parent"
         android:id="@+id/productList"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentStart="false"
+        android:divider="@color/colorProdDivider"
+        android:dividerHeight="2px"
+        android:focusable="true"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

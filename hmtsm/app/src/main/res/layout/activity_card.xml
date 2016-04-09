@@ -5,6 +5,84 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="edu.fiu.hmts_cu.activity.CardActivity">
+    tools:context="edu.fiu.hmts_cu.activity.CardActivity"
+    android:background="@color/colorLightGray">
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/billaddress"
+        android:hint="@string/prompt_bill"
+        android:layout_below="@+id/seccode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardnum"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/prompt_cardno" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameoncard"
+        android:layout_marginTop="10dp"
+        android:hint="@string/prompt_Name"
+        android:layout_below="@+id/cardnum"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/expiration"
+        android:layout_marginTop="10dp"
+        android:hint="@string/prompt_expire"
+        android:layout_below="@+id/nameoncard"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seccode"
+        android:layout_marginTop="10dp"
+        android:hint="@string/prompt_seccode"
+        android:layout_below="@+id/expiration"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/billcity"
+        android:hint="@string/prompt_city"
+        android:layout_below="@+id/billaddress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/placeorder"
+        android:id="@+id/placeordercard"
+        android:layout_below="@+id/billcity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorOrange"
+        android:textColor="@color/colorLightGray"
+        android:textSize="20dp"
+        android:height="35dp" />
 </RelativeLayout>

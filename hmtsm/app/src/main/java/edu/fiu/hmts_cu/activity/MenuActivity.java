@@ -1,19 +1,19 @@
 package edu.fiu.hmts_cu.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
@@ -26,6 +26,10 @@ import edu.fiu.hmts_cu.customcontrol.ProductListAdapter;
  * Class for MenuActivity
  */
 public class MenuActivity extends Activity {
+
+    String userId = "";
+    String phone = "";
+    JSONArray products = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +55,26 @@ public class MenuActivity extends Activity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goCart(v);
+                viewCart(v);
             }
         });
 
-        JSONArray products = getProducts();
+        products = getProducts();
         ListView productList = (ListView)findViewById(R.id.productList);
         productList.setAdapter(new ProductListAdapter(this, products));
 
-        //ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.quantity, R.layout.spinner_item);
-        //((Spinner)findViewById(R.id.productquatity)).setAdapter(adapter);
+        userId = getIntent().getStringExtra("userId");
+        phone = getIntent().getStringExtra("phone");
     }
 
     private JSONArray getProducts() {
         JSONArray products = null;
         try {
             products = new Service().execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            for (int i = 0; i < products.length(); i++){
+                products.getJSONObject(i).put("quantity", "0");
+            }
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
         return products;
@@ -94,13 +99,6 @@ public class MenuActivity extends Activity {
     }
 
     /**
-     * Add a product into shopping cart.
-     */
-    public void AddProductCart(){
-
-    }
-
-    /**
      * Logout.
      */
     public void logout(View view){
@@ -110,8 +108,58 @@ public class MenuActivity extends Activity {
     /**
      * Go to shopping cart.
      */
-    public void goCart(View view){
+    public void viewCart(View view){
+        JSONArray cartList = getProductinCart();
+
+        if (cartList.length() == 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Sorry! Shopping cart is empty");
+            builder.setMessage("Please choose products you like.");
+            builder.setCancelable(true);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            return;
+        }
+
         Intent cartIntent = new Intent(MenuActivity.this, CartActivity.class);
+        cartIntent.putExtra("userId", userId);
+        cartIntent.putExtra("phone", phone);
+        cartIntent.putExtra("cartList", cartList.toString());
         startActivity(cartIntent);
+    }
+
+    /**
+     * Get products in shopping cart.
+     */
+    public JSONArray getProductinCart(){
+        JSONArray cartList = new JSONArray();
+        ListView prodList = (ListView)findViewById(R.id.productList);
+
+        for (int i = 0; i < prodList.getCount(); i++){
+            View view = prodList.getAdapter().getView(i, null, prodList);
+            String qty = ((TextView)view.findViewById(R.id.prodquatity)).getText().toString();
+
+            if (!"0".equals(qty)){
+                JSONObject cartItem = new JSONObject();
+                try {
+                    cartItem.put("productId", prodList.getItemIdAtPosition(i));
+                    cartItem.put("name", ((TextView)view.findViewById(R.id.productname)).getText().toString());
+                    cartItem.put("type", ((TextView)view.findViewById(R.id.producttype)).getText().toString());
+                    cartItem.put("price", ((TextView)view.findViewById(R.id.productprice)).getText().toString());
+                    cartItem.put("quantity", ((TextView)view.findViewById(R.id.prodquatity)).getText().toString());
+                    cartItem.put("brief", ((TextView)view.findViewById(R.id.productbrief)).getText().toString());
+                    cartList.put(cartItem);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return cartList;
     }
 }

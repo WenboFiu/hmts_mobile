@@ -38,7 +38,7 @@
         <activity android:name=".activity.CardActivity"
             android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
-        <activity android:name=".activity.FillOrderInfoActivity"
+        <activity android:name=".activity.OrderInfoActivity"
             android:theme="@style/Theme.Custom.ActionBar" >
         </activity>
     </application>

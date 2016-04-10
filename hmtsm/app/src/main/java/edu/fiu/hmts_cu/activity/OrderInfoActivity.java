@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,8 +14,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 import edu.fiu.hmts_cu.R;
+import edu.fiu.hmts_cu.controller.MobileController;
 
 /**
  * Class for FillOrderInfoActivity
@@ -54,6 +60,10 @@ public class OrderInfoActivity extends Activity {
      */
     String billCity = "";
     /**
+     * The Total.
+     */
+    String total = "";
+    /**
      * The Cart array.
      */
     JSONArray cartArray = null;
@@ -86,11 +96,11 @@ public class OrderInfoActivity extends Activity {
         notes.setText(getIntent().getStringExtra("notes"));
 
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
-        if (!"".equals(getIntent().getStringExtra("payment"))){
+        if (getIntent().getStringExtra("payment") != null
+                && !"".equals(getIntent().getStringExtra("payment"))){
             int id = Integer.parseInt(getIntent().getStringExtra("payment"));
             radioGroup.check(id);
         }
-        findViewById(radioGroup.getCheckedRadioButtonId()).callOnClick();
 
         EditText phoneNum = (EditText)findViewById(R.id.phonenum);
         phoneNum.setText(phone);
@@ -103,7 +113,8 @@ public class OrderInfoActivity extends Activity {
         try {
             userId = getIntent().getStringExtra("userId");
             phone = getIntent().getStringExtra("phone");
-            String object = getIntent().getStringExtra("cartList");
+            total = getIntent().getStringExtra("amount");
+            String object = getIntent().getStringExtra("cartArray");
             if (object == null || "".equals(object))
                 object = "[]";
             cartArray = new JSONArray(object);
@@ -159,6 +170,7 @@ public class OrderInfoActivity extends Activity {
             cardIntent.putExtra("seccode", secCode);
             cardIntent.putExtra("billaddr", billAddr);
             cardIntent.putExtra("billcity", billCity);
+            cardIntent.putExtra("amount", total);
             if (cartArray != null)
                 cardIntent.putExtra("cartArray", cartArray.toString());
             else
@@ -199,8 +211,56 @@ public class OrderInfoActivity extends Activity {
      *
      * @param view the view
      */
-    public void placeOrderCash(View view){
+    public void placeOrderCash(View view) {
         if (checkFields()) return;
+        JSONObject object = new JSONObject();
+        JSONObject order = new JSONObject();
+        JSONObject payment = new JSONObject();
+        JSONObject result = new JSONObject();
+        try {
+            order.put("shipAddress", ((EditText)findViewById(R.id.shipaddr)).getText().toString()
+                + ", " + ((EditText)findViewById(R.id.shipcity)).getText().toString());
+            order.put("phone", ((EditText)findViewById(R.id.phonenum)).getText().toString());
+            order.put("note", ((EditText)findViewById(R.id.deliverynote)).getText().toString());
+            order.put("status", "Processing");
+            order.put("userId", userId);
+
+            payment.put("method", "0");
+            payment.put("amount", total == null ? 0.0 : Double.parseDouble(total));
+
+            object.put("order", order);
+            object.put("payment", payment);
+            object.put("cartArray", cartArray);
+
+            result = new Service().execute(object).get();
+            Intent resIntent = new Intent(OrderInfoActivity.this, PaymentActivity.class);
+            resIntent.putExtra("result", result.toString());
+            startActivity(resIntent);
+            finish();
+        } catch (JSONException | InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Class for async task.
+     */
+    class Service extends AsyncTask<JSONObject, Void, JSONObject> {
+        @Override
+        protected void onPreExecute() {
+        }
+
+        protected JSONObject doInBackground(JSONObject... params) {
+            return MobileController.newOrder(params[0]);
+        }
+
+        /**
+         * On post execute.
+         *
+         * @param result the result
+         */
+        protected void onPostExecute(Void result) {
+        }
     }
 
     /**

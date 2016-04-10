@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:permission="android.permission.INTERNET">
+            android:permission="android.permission.INTERNET"
+            android:launchMode="singleTask">
         </activity>
         <activity android:name=".activity.MenuActivity"
             android:theme="@style/Theme.Custom.ActionBar">

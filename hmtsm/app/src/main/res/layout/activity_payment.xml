@@ -9,40 +9,35 @@
     android:background="@color/colorLightGray">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Congratulations!"
-        android:id="@+id/textView2"
-        android:textColor="@color/colorOrange"
-        android:textSize="30dp"
-        android:layout_marginBottom="70dp"
-        android:layout_above="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_width="330dp"
+        android:layout_height="90dp"
+        android:id="@+id/congrat"
+        android:background="@drawable/congra"
+        android:layout_marginTop="60dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView3"
-        android:textSize="25dp"
+        android:text="@string/confirm"
+        android:id="@+id/congratext"
+        android:textSize="27dp"
         android:textColor="@color/colorOrange"
-        android:layout_marginBottom="155dp"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/congrat"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Return to Menu"
-        android:id="@+id/button"
+        android:text="@string/finish"
+        android:id="@+id/contpurchase"
         android:textColor="@color/colorLightGray"
         android:background="@color/colorOrange"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="86dp"
         android:textSize="20dp"
-        android:height="35dp" />
+        android:height="35dp"
+        android:onClick="displayMenu"
+        android:layout_below="@+id/congratext"
+        android:layout_marginTop="60dp" />
+
 </RelativeLayout>

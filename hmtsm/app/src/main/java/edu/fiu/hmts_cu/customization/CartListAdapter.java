@@ -55,7 +55,7 @@ public class CartListAdapter extends BaseAdapter {
         /**
          * The Total.
          */
-        TextView total;
+        TextView amount;
     }
 
     /**
@@ -126,14 +126,14 @@ public class CartListAdapter extends BaseAdapter {
         holder.type = (TextView)rowView.findViewById(R.id.carttype);
         holder.price = (TextView)rowView.findViewById(R.id.cartprice);
         holder.quantity = (TextView)rowView.findViewById(R.id.cartquatity);
-        holder.total = (TextView)rowView.findViewById(R.id.carttotal);
+        holder.amount = (TextView)rowView.findViewById(R.id.carttotal);
 
         try {
             holder.name.setText(items.getJSONObject(position).get("name").toString());
             holder.type.setText(items.getJSONObject(position).get("type").toString());
             holder.price.setText(items.getJSONObject(position).get("price").toString());
             holder.quantity.setText(items.getJSONObject(position).get("quantity").toString());
-            holder.total.setText(String.format("%.2f", Double.parseDouble(holder.price.getText().toString())
+            holder.amount.setText(String.format("%.2f", Double.parseDouble(holder.price.getText().toString())
                     * Double.parseDouble(holder.quantity.getText().toString())));
         } catch (JSONException e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,8 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 import edu.fiu.hmts_cu.R;
+import edu.fiu.hmts_cu.controller.MobileController;
 
 /**
  * Class for CardActivity
@@ -40,6 +46,10 @@ public class CardActivity extends Activity {
      * The Notes.
      */
     String notes = "";
+    /**
+     * The Total.
+     */
+    String total = "";
     /**
      * The Cart array.
      */
@@ -98,6 +108,7 @@ public class CardActivity extends Activity {
             shipAddr = getIntent().getStringExtra("shipaddr");
             shipCity = getIntent().getStringExtra("shipcity");
             notes = getIntent().getStringExtra("notes");
+            total = getIntent().getStringExtra("amount");
             String object = getIntent().getStringExtra("cartArray");
             if (object == null || "".equals(object))
                 object = "[]";
@@ -148,7 +159,63 @@ public class CardActivity extends Activity {
      * Place order.
      */
     private void placeOrder(){
+        JSONObject object = new JSONObject();
+        JSONObject order = new JSONObject();
+        JSONObject payment = new JSONObject();
+        JSONObject card = new JSONObject();
+        JSONObject result = new JSONObject();
+        try {
+            order.put("shipAddress", ((EditText)findViewById(R.id.shipaddr)).getText().toString()
+                    + ", " + ((EditText)findViewById(R.id.shipcity)).getText().toString());
+            order.put("phone", ((EditText)findViewById(R.id.phonenum)).getText().toString());
+            order.put("note", ((EditText)findViewById(R.id.deliverynote)).getText().toString());
+            order.put("status", "Processing");
+            order.put("userId", userId);
 
+            payment.put("method", "0");
+            payment.put("amount", total.split("$")[1].split(" ")[0]);
+
+            card.put("cardNum", ((EditText)findViewById(R.id.cardnum)).getText().toString());
+            card.put("cardOwner", ((EditText)findViewById(R.id.nameoncard)).getText().toString());
+            card.put("expDate", ((EditText)findViewById(R.id.expiration)).getText().toString());
+            card.put("secCode", ((EditText)findViewById(R.id.seccode)).getText().toString());
+            card.put("billAddress", ((EditText)findViewById(R.id.billaddr)).getText().toString()
+                    + ", " + ((EditText)findViewById(R.id.billcity)).getText().toString());
+
+            object.put("order", order);
+            object.put("payment", payment);
+            object.put("card", card);
+            object.put("cartArray", cartArray);
+
+            result = new Service().execute(object).get();
+            Intent resIntent = new Intent(CardActivity.this, PaymentActivity.class);
+            resIntent.putExtra("result", result.toString());
+            startActivity(resIntent);
+            finish();
+        } catch (JSONException | InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Class for async task.
+     */
+    class Service extends AsyncTask<JSONObject, Void, JSONObject> {
+        @Override
+        protected void onPreExecute() {
+        }
+
+        protected JSONObject doInBackground(JSONObject... params) {
+            return MobileController.newOrder(params[0]);
+        }
+
+        /**
+         * On post execute.
+         *
+         * @param result the result
+         */
+        protected void onPostExecute(Void result) {
+        }
     }
 
     /**

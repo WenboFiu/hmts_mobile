@@ -43,14 +43,17 @@ public class HttpService {
         HttpURLConnection urlConn = null;
         String res = "";
         try {
-            URL url = new URL(SERVICE_URL + data.get("target").toString());
+            URL url = new URL(SERVICE_URL + data.getString("target"));
             urlConn = (HttpURLConnection) url.openConnection();
             urlConn.setConnectTimeout(CONNECTION_TIMEOUT);
             urlConn.setReadTimeout(DATARETRIEVAL_TIMEOUT);
-            urlConn.setRequestProperty("Content-Type", "application/json");
 
-            data.remove("target");
-            if (data.length() > 0){
+            if (data.length() > 1){
+                if ("/placeorder".equals(data.getString("target")))
+                    urlConn.setRequestProperty("Content-Type", "text/plain");
+                else
+                    urlConn.setRequestProperty("Content-Type", "application/json");
+                data.remove("target");
                 urlConn.setDoOutput(true);
                 urlConn.setRequestMethod("POST");
                 String send = data.toString();

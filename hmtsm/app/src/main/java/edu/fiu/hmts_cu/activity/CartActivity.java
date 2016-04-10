@@ -137,7 +137,8 @@ public class CartActivity extends Activity {
         orderIntent.putExtra("shipcity", shipCity);
         orderIntent.putExtra("notes", notes);
         orderIntent.putExtra("payment", payment);
-        orderIntent.putExtra("cartList", cartArray.toString());
+        orderIntent.putExtra("amount", ((TextView)findViewById(R.id.total)).getText().toString().split(" ")[1].replace("$", ""));
+        orderIntent.putExtra("cartArray", cartArray.toString());
         startActivityForResult(orderIntent, 1);
     }
 
@@ -153,7 +154,7 @@ public class CartActivity extends Activity {
             String subTotalTmp = ((TextView) view.findViewById(R.id.carttotal)).getText().toString();
             double subTotal = Double.parseDouble(subTotalTmp);
             try {
-                cartArray.getJSONObject(i).put("total", subTotal);
+                cartArray.getJSONObject(i).put("amount", subTotal);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

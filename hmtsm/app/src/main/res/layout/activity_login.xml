@@ -23,29 +23,28 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:id="@+id/usernm"
         android:hint="@string/prompt_email"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textColor="@color/colorLightGray"
         android:textColorHint="@color/colorLightGray"
         android:textStyle="italic"
-        android:layout_below="@+id/load"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/load"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/passwd"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/prompt_password"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_below="@+id/usernm"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -63,7 +62,7 @@
         android:layout_below="@+id/passwd"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="23dp"

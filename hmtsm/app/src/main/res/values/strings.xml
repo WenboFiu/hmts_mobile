@@ -36,4 +36,7 @@
     <string name="prompt_cardno">Card Number</string>
     <string name="prompt_expire">Expiration Date</string>
     <string name="prompt_seccode">Security Code</string>
+
+    <string name="confirm">"We will process your order recently.\n\nThank you!"</string>
+    <string name="finish">Continue To Purchase</string>
 </resources>

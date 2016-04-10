@@ -13,8 +13,9 @@ public class MobileController {
 
     /**
      * Login.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject login(JSONObject data){
         try {
@@ -30,8 +31,9 @@ public class MobileController {
 
     /**
      * Logout.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject logout(JSONObject data){
         try {
@@ -47,8 +49,9 @@ public class MobileController {
 
     /**
      * Register.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject register(JSONObject data){
         try {
@@ -64,7 +67,8 @@ public class MobileController {
 
     /**
      * Display the menu.
-     * @return Results
+     *
+     * @return Results json array
      */
     public static JSONArray displayMenu(){
         try {
@@ -81,8 +85,9 @@ public class MobileController {
 
     /**
      * Display the shopping cart.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json array
      */
     public static JSONArray displayCart(JSONObject data){
         try {
@@ -98,8 +103,9 @@ public class MobileController {
 
     /**
      * Add a product into shopping cart.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject addProductCart(JSONObject data){
         try {
@@ -115,8 +121,9 @@ public class MobileController {
 
     /**
      * Delete a product from shopping cart.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject delProductCart(JSONObject data){
         try {
@@ -132,8 +139,9 @@ public class MobileController {
 
     /**
      * Create an order.
+     *
      * @param data required info
-     * @return Results
+     * @return Results json object
      */
     public static JSONObject newOrder(JSONObject data){
         try {
@@ -149,7 +157,8 @@ public class MobileController {
 
     /**
      * Get secure questions.
-     * @return Results
+     *
+     * @return Results json object
      */
     public static JSONObject getQuestions(){
         try {

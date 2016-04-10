@@ -12,10 +12,8 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.lang.Object;
-
 import edu.fiu.hmts_cu.R;
-import edu.fiu.hmts_cu.customcontrol.CartListAdapter;
+import edu.fiu.hmts_cu.customization.CartListAdapter;
 
 /**
  * Class for CartActivity

@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 import edu.fiu.hmts_cu.R;
 import edu.fiu.hmts_cu.controller.MobileController;
-import edu.fiu.hmts_cu.customcontrol.ProductListAdapter;
+import edu.fiu.hmts_cu.customization.ProductListAdapter;
 
 /**
  * Class for MenuActivity

@@ -19,15 +19,25 @@ import java.util.Scanner;
  */
 public class HttpService {
 
+    /**
+     * The constant SERVICE_URL.
+     */
     private static String SERVICE_URL = "http://192.168.1.125:8080/hmts/mobile/service";
-    //private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
+    /**
+     * The constant CONNECTION_TIMEOUT.
+     */
+//private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
     private static int CONNECTION_TIMEOUT = 20000;
+    /**
+     * The constant DATARETRIEVAL_TIMEOUT.
+     */
     private static int DATARETRIEVAL_TIMEOUT = 20000;
 
     /**
      * Request service on servers.
+     *
      * @param data object info
-     * @return Results
+     * @return Results string
      */
     public static String requestService(JSONObject data) {
         HttpURLConnection urlConn = null;
@@ -61,13 +71,7 @@ public class HttpService {
             else {
                 res = "{\"result\":\"failed\"}";
             }
-        }catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (SocketTimeoutException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
         if (urlConn != null)
@@ -77,8 +81,9 @@ public class HttpService {
 
     /**
      * Get the response text.
+     *
      * @param inStream input stream
-     * @return Results
+     * @return Results response text
      */
     private static String getResponseText(InputStream inStream) {
         // very nice trick from

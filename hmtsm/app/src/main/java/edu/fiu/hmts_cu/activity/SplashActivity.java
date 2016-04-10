@@ -12,6 +12,9 @@ import edu.fiu.hmts_cu.R;
  */
 public class SplashActivity extends AppCompatActivity {
 
+    /**
+     * The Splash duration.
+     */
     private final int SPLASH_DURATION = 2000;
 
     @Override

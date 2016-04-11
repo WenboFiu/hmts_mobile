@@ -78,7 +78,7 @@ public class RegisterActivity extends Activity {
             }
         });
 
-        Button right = (Button)findViewById(R.id.header_left_btn);
+        Button right = (Button)findViewById(R.id.header_right_btn);
         right.setWidth(25);
         right.setVisibility(View.INVISIBLE);
     }

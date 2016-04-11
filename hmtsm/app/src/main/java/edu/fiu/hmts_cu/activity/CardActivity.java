@@ -290,7 +290,7 @@ public class CardActivity extends Activity {
             alertDialog.show();
             return true;
         }
-        else if (subDate.length != 2 || !subDate[0].matches("^[1-9]\\d*$") || !subDate[1].matches("^[1-9]\\d*$")
+        else if (subDate.length != 2 || !subDate[0].matches("^[0-9]\\d*$") || !subDate[1].matches("^[1-9]\\d*$")
                 || Integer.parseInt(subDate[0]) < 1 || Integer.parseInt(subDate[0]) > 12
                 || Integer.parseInt(subDate[1]) < 1900 || Integer.parseInt(subDate[1]) > 9999){
             builder.setMessage("Sorry, expiration date is incorrect.(Format: MM/YYYY)");

@@ -60,7 +60,7 @@
         android:layout_below="@+id/expiration"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:inputType="number" />
+        android:inputType="numberPassword" />
 
     <EditText
         android:layout_width="fill_parent"

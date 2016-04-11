@@ -34,7 +34,7 @@
     <string name="prompt_bill">Billing Address</string>
     <string name="prompt_Name">Name on Card</string>
     <string name="prompt_cardno">Card Number</string>
-    <string name="prompt_expire">Expiration Date</string>
+    <string name="prompt_expire">Expiration Date (Month/Year)</string>
     <string name="prompt_seccode">Security Code</string>
 
     <string name="confirm">"We will process your order recently.\n\nThank you!"</string>

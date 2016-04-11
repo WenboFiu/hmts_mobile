@@ -185,7 +185,6 @@ public class MenuActivity extends Activity {
             if (!"0".equals(qty)){
                 JSONObject cartItem = new JSONObject();
                 try {
-                    cartItem.put("userId", userId);
                     cartItem.put("productId", prodList.getItemIdAtPosition(i));
                     cartItem.put("name", ((TextView)view.findViewById(R.id.productname)).getText().toString());
                     cartItem.put("type", ((TextView)view.findViewById(R.id.producttype)).getText().toString());

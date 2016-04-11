@@ -23,6 +23,10 @@ public class PaymentActivity extends Activity {
      * The Phone.
      */
     String phone = "";
+    /**
+     * The Result.
+     */
+    String result = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class PaymentActivity extends Activity {
      */
     private void receiveDataFromLastActivity() {
         try {
+            result = getIntent().getStringExtra("result");
             userId = getIntent().getStringExtra("userId");
             phone = getIntent().getStringExtra("phone");
         } catch (Exception e) {
@@ -73,11 +78,11 @@ public class PaymentActivity extends Activity {
     /**
      * Display menu.
      */
-    public void displayMenu(){
-        Intent menuItem = new Intent(PaymentActivity.this, MenuActivity.class);
-        menuItem.putExtra("userId", userId);
-        menuItem.putExtra("phone", phone);
-        startActivity(menuItem);
-        finish();
+    public void continueToPurchase(){
+        int a = 0;
+        Intent menuIntent = new Intent(PaymentActivity.this, MenuActivity.class);
+        menuIntent.putExtra("userId", userId);
+        menuIntent.putExtra("phone", phone);
+        startActivity(menuIntent);
     }
 }

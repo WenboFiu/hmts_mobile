@@ -234,9 +234,10 @@ public class OrderInfoActivity extends Activity {
 
             result = new Service().execute(object).get();
             Intent resIntent = new Intent(OrderInfoActivity.this, PaymentActivity.class);
-            resIntent.putExtra("result", result.toString());
+            resIntent.putExtra("result", result.getString("result"));
+            resIntent.putExtra("userId", userId);
+            resIntent.putExtra("phone", phone);
             startActivity(resIntent);
-            finish();
         } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }

@@ -51,6 +51,10 @@ public class CardActivity extends Activity {
      */
     String total = "";
     /**
+     * The Consist.
+     */
+    int consist = 1;
+    /**
      * The Cart array.
      */
     JSONArray cartArray = null;
@@ -165,22 +169,22 @@ public class CardActivity extends Activity {
         JSONObject card = new JSONObject();
         JSONObject result = new JSONObject();
         try {
-            order.put("shipAddress", ((EditText)findViewById(R.id.shipaddr)).getText().toString()
-                    + ", " + ((EditText)findViewById(R.id.shipcity)).getText().toString());
-            order.put("phone", ((EditText)findViewById(R.id.phonenum)).getText().toString());
-            order.put("note", ((EditText)findViewById(R.id.deliverynote)).getText().toString());
+            order.put("shipAddress", shipAddr + ", " + shipCity);
+            order.put("phone", phone);
+            order.put("note", notes);
             order.put("status", "Processing");
             order.put("userId", userId);
 
-            payment.put("method", "0");
-            payment.put("amount", total.split("$")[1].split(" ")[0]);
+            payment.put("method", "1");
+            payment.put("amount", total == null ? 0.0 : Double.parseDouble(total));
 
             card.put("cardNum", ((EditText)findViewById(R.id.cardnum)).getText().toString());
             card.put("cardOwner", ((EditText)findViewById(R.id.nameoncard)).getText().toString());
-            card.put("expDate", ((EditText)findViewById(R.id.expiration)).getText().toString());
+            card.put("expDate", formatDate(((EditText)findViewById(R.id.expiration)).getText().toString()));
             card.put("secCode", ((EditText)findViewById(R.id.seccode)).getText().toString());
             card.put("billAddress", ((EditText)findViewById(R.id.billaddr)).getText().toString()
                     + ", " + ((EditText)findViewById(R.id.billcity)).getText().toString());
+            card.put("bsConsistency", consist);
 
             object.put("order", order);
             object.put("payment", payment);
@@ -189,9 +193,10 @@ public class CardActivity extends Activity {
 
             result = new Service().execute(object).get();
             Intent resIntent = new Intent(CardActivity.this, PaymentActivity.class);
-            resIntent.putExtra("result", result.toString());
+            resIntent.putExtra("result", result.getString("result"));
+            resIntent.putExtra("userId", userId);
+            resIntent.putExtra("phone", phone);
             startActivity(resIntent);
-            finish();
         } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -263,22 +268,32 @@ public class CardActivity extends Activity {
      * @return the boolean
      */
     private boolean checkFields() {
+        String date = ((EditText)findViewById(R.id.expiration)).getText().toString();
+        String[] subDate = date.split("/");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
+        builder.setTitle("Warning");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         if ("".equals(((EditText)findViewById(R.id.cardnum)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.nameoncard)).getText().toString())
-                || "".equals(((EditText)findViewById(R.id.expiration)).getText().toString())
+                || "".equals(date)
                 || "".equals(((EditText)findViewById(R.id.seccode)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.billaddr)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.billcity)).getText().toString())){
-            builder.setTitle("Warning");
             builder.setMessage("Sorry, card information is incomplete.");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            return true;
+        }
+        else if (subDate.length != 2 || !subDate[0].matches("^[1-9]\\d*$") || !subDate[1].matches("^[1-9]\\d*$")
+                || Integer.parseInt(subDate[0]) < 1 || Integer.parseInt(subDate[0]) > 12
+                || Integer.parseInt(subDate[1]) < 1900 || Integer.parseInt(subDate[1]) > 9999){
+            builder.setMessage("Sorry, expiration date is incorrect.(Format: MM/YYYY)");
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
             return true;
@@ -292,9 +307,9 @@ public class CardActivity extends Activity {
      * @return the boolean
      */
     private boolean checkAddresses() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        if (!shipAddr.equals(((EditText)findViewById(R.id.billaddr)).getText().toString())
-                || !shipCity.equals(((EditText) findViewById(R.id.billcity)).getText().toString())){
+        if (shipAddr != null && !shipAddr.equals(((EditText)findViewById(R.id.billaddr)).getText().toString())
+                || shipCity != null && !shipCity.equals(((EditText) findViewById(R.id.billcity)).getText().toString())){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Address Validation");
             builder.setMessage("Your shipping address and billing address are different.\nDo you want to keep it?");
             builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -311,8 +326,24 @@ public class CardActivity extends Activity {
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+            consist = 0;
             return true;
         }
         return false;
+    }
+
+    /**
+     * Format date string.
+     *
+     * @param date the date
+     * @return the string
+     */
+    private String formatDate(String date){
+        if (date == null) return "";
+        String[] subDate = date.split("/");
+        if (Integer.parseInt(subDate[0]) < 10)
+            subDate[0] = "0" + subDate[0];
+        String res = subDate[1] + "-" + subDate[0] + "-" + "01" + "T23:59:59.000Z";
+        return  res;
     }
 }

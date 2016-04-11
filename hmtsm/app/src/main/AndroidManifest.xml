@@ -25,7 +25,8 @@
             android:launchMode="singleTask">
         </activity>
         <activity android:name=".activity.MenuActivity"
-            android:theme="@style/Theme.Custom.ActionBar">
+            android:theme="@style/Theme.Custom.ActionBar"
+            android:launchMode="singleTask">
         </activity>
         <activity android:name=".activity.RegisterActivity"
             android:theme="@style/Theme.Custom.ActionBar">

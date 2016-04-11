@@ -36,8 +36,8 @@
         android:background="@color/colorOrange"
         android:textSize="20dp"
         android:height="35dp"
-        android:onClick="continueToPurchase"
         android:layout_below="@+id/congratext"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="60dp"
+        android:onClick="continueToPurchase" />
 
 </RelativeLayout>

@@ -3,10 +3,9 @@ package edu.fiu.hmts_cu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-
-import org.json.JSONArray;
 
 import edu.fiu.hmts_cu.R;
 
@@ -78,8 +77,7 @@ public class PaymentActivity extends Activity {
     /**
      * Display menu.
      */
-    public void continueToPurchase(){
-        int a = 0;
+    public void continueToPurchase(View view){
         Intent menuIntent = new Intent(PaymentActivity.this, MenuActivity.class);
         menuIntent.putExtra("userId", userId);
         menuIntent.putExtra("phone", phone);

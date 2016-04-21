@@ -285,7 +285,7 @@ public class CardActivity extends Activity {
                 || "".equals(((EditText)findViewById(R.id.seccode)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.billaddr)).getText().toString())
                 || "".equals(((EditText)findViewById(R.id.billcity)).getText().toString())){
-            builder.setMessage("Sorry, card information is incomplete.");
+            builder.setMessage("Sorry! The card information is incomplete.");
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
             return true;

@@ -180,7 +180,7 @@ public class RegisterActivity extends Activity {
                 || "".equals(((EditText)findViewById(R.id.answer)).getText().toString())){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Warning");
-            builder.setMessage("Registration information is incomplete.");
+            builder.setMessage("Sorry! Registration information is incomplete.");
             builder.setCancelable(true);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override

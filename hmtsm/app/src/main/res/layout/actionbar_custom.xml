@@ -22,7 +22,7 @@
         android:layout_height="fill_parent"
         android:layout_toRightOf="@+id/header_left_btn"
         android:layout_toLeftOf="@+id/header_right_btn"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/colorLightGray"
         android:gravity="center"

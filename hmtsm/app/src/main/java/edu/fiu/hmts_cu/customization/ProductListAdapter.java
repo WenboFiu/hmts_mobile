@@ -161,13 +161,15 @@ public class ProductListAdapter extends BaseAdapter {
             holder.add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String curQTY = String.valueOf(Integer.parseInt(holder.quantity.getText().toString()) + 1);
-                    try {
-                        items.getJSONObject(position).put("quantity", curQTY);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    if (!"20".equals(holder.quantity.getText().toString())){
+                        String curQTY = String.valueOf(Integer.parseInt(holder.quantity.getText().toString()) + 1);
+                        try {
+                            items.getJSONObject(position).put("quantity", curQTY);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        holder.quantity.setText(curQTY);
                     }
-                    holder.quantity.setText(curQTY);
                 }
             });
             holder.minus.setOnClickListener(new View.OnClickListener() {

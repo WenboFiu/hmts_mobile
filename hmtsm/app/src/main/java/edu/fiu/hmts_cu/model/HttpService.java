@@ -22,11 +22,11 @@ public class HttpService {
     /**
      * The constant SERVICE_URL.
      */
-    private static String SERVICE_URL = "http://192.168.1.125:8080/hmts/mobile/service";
+    //private static String SERVICE_URL = "http://192.168.1.146:8080/hmts/mobile/service";
+    private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
     /**
      * The constant CONNECTION_TIMEOUT.
      */
-//private static String SERVICE_URL = "http://10.109.228.27:8080/hmts/mobile/service";
     private static int CONNECTION_TIMEOUT = 20000;
     /**
      * The constant DATARETRIEVAL_TIMEOUT.

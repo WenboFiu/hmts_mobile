@@ -16,7 +16,7 @@
         android:text="@string/login_title"
         android:id="@+id/textView"
         android:textSize="50dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="90dp"
         android:textColor="#f4f4f4"
         android:textStyle="bold|italic"
         android:layout_alignParentTop="true"
@@ -35,7 +35,7 @@
         android:layout_alignTop="@+id/load"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="55dp" />
 
     <EditText
         android:layout_width="wrap_content"

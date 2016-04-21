@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     /**
      * The Splash duration.
      */
-    private final int SPLASH_DURATION = 3000;
+    private final int SPLASH_DURATION = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

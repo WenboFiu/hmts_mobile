@@ -9,51 +9,51 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/cartname"
-            android:layout_width="127dp"
+            android:layout_width="140dp"
             android:textColor="@color/colorOrange"
             android:layout_height="wrap_content"
             android:text="Product Name"
-            android:textSize="18sp"
+            android:textSize="20dp"
             android:layout_gravity="center_vertical"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" />
         <TextView
             android:id="@+id/carttype"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:textColor="@color/colorOrange"
             android:layout_height="wrap_content"
             android:text="Type"
-            android:textSize="17sp"
+            android:textSize="20dp"
             android:textAlignment="center"
             android:layout_gravity="center"
             android:textStyle="italic" />
         <TextView
             android:id="@+id/cartprice"
-            android:layout_width="57dp"
+            android:layout_width="60dp"
             android:textColor="@color/colorOrange"
             android:layout_height="wrap_content"
             android:text="Price"
-            android:textSize="18sp"
+            android:textSize="20dp"
             android:textAlignment="center"
             android:layout_gravity="center" />
         <TextView
-            android:layout_width="35dp"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:id="@+id/cartquatity"
             android:layout_gravity="center"
             android:textColor="@color/colorOrange"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:text="QTY" />
         <TextView
-            android:layout_width="65dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/carttotal"
             android:layout_gravity="center"
             android:textColor="@color/colorOrange"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="20dp"
             android:text="STotal"
             android:textStyle="bold" />
     </LinearLayout>

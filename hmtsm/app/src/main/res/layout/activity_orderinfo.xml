@@ -76,7 +76,7 @@
 
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/placeorder"
         android:id="@+id/placeorder"
         android:layout_below="@+id/radioGroup"

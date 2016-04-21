@@ -192,7 +192,7 @@ public class OrderInfoActivity extends Activity {
                 || "".equals(((EditText)findViewById(R.id.phonenum)).getText().toString())){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Warning");
-            builder.setMessage("Sorry, order information is incomplete.");
+            builder.setMessage("Sorry! The Order information is incomplete.");
             builder.setCancelable(true);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override

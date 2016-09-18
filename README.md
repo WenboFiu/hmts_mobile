@@ -11,7 +11,7 @@ Functionalities:
 Technical Highlight:
 
 1. A splash view is used to exhibit the brand and version of the app.
-2. Customized characteristic views and adapters to raise user experiences.
+2. Customized characteristic views, adapters and icons to raise user experiences.
 2. Utilized suited activities stacks to guarantee the reasonable sequence of activities.
 3. Communicate with the server side with JSON data format over HTTP protocol.
 4. Tested the app with the automation testing tool, Robotium, to raise the testing efficiency and quality, and save labor cost.

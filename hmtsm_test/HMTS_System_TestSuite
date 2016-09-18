@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="Login_S1.html">Login_S1</a></td></tr>
+<tr><td><a href="Login_S2.html">Login_S2</a></td></tr>
+<tr><td><a href="Login_R1.html">Login_R1</a></td></tr>
+<tr><td><a href="Logout_S1.html">Logout_S1</a></td></tr>
+<tr><td><a href="Logout_S2.html">Logout_S2</a></td></tr>
+<tr><td><a href="VisualizeProducts_R1.html">VisualizeProducts_R1</a></td></tr>
+<tr><td><a href="AddProduct_S1.html">AddProduct_S1</a></td></tr>
+<tr><td><a href="VisualizeProducts_S1.html">VisualizeProducts_S1</a></td></tr>
+<tr><td><a href="AddProduct_S2.html">AddProduct_S2</a></td></tr>
+<tr><td><a href="VisualizeProducts_S2.html">VisualizeProducts_S2</a></td></tr>
+<tr><td><a href="AddProduct_S3.html">AddProduct_S3</a></td></tr>
+<tr><td><a href="AddProduct_R1.html">AddProduct_R1</a></td></tr>
+<tr><td><a href="CreateAccount_S1.html">CreateAccount_S1</a></td></tr>
+<tr><td><a href="CreateAccount_S2.html">CreateAccount_S2</a></td></tr>
+<tr><td><a href="CreateAccount_R1.html">CreateAccount_R1</a></td></tr>
+</tbody></table>
+</body>
+</html>

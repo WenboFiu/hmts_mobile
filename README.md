@@ -1,6 +1,6 @@
-# hmts_mobile
+# Android Mobile App for Takeout System
 
-Android mobile app for Happy Meal Take-out System
+Android Mobile App for Happy Meal Take-out System
 
 Functionalities:
 
